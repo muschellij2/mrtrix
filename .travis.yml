@@ -1,11 +1,38 @@
 language: R
 sudo: no
 cache: packages
-after_success: if [ "$TRAVIS_OS_NAME" == "linux" ]; then Rscript -e 'covr::coveralls(type
-  = "all")'; fi
 warnings_are_errors: yes
-before_deploy: if [ "$TRAVIS_OS_NAME" == "osx" ]; then rm -f *.tar.gz; fi
 r_check_args: --as-cran --install-args=--build
+
+addons:
+  apt:
+    packages:
+    - libeigen3-dev 
+    - libqt4-opengl-dev 
+    - libgl1-mesa-dev 
+    - libfftw3-dev 
+    - libtiff5-dev
+
+
+before_install: 
+  - if [[ "${TRAVIS_OS_NAME}" = "osx" ]];
+    then
+      brew install eigen qt5 pkg-config ;
+      export PATH=`brew --prefix`/opt/qt5/bin:$PATH ;
+    fi
+
+after_success: 
+  - if [ "$TRAVIS_OS_NAME" == "linux" ]; 
+    then 
+    Rscript -e 'covr::coveralls(type = "all")'; 
+    fi
+
+before_deploy: 
+  - if [ "$TRAVIS_OS_NAME" == "osx" ]; 
+    then 
+      rm -f *.tar.gz; 
+    fi
+
 deploy:
   provider: releases
   skip_cleanup: yes
