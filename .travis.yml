@@ -3,7 +3,7 @@ cache: packages
 warnings_are_errors: yes
 r_check_args: --as-cran --install-args=--build
 sudo: required 
-dist: precise 
+dist: trusty 
 
 addons:
   apt:
@@ -12,7 +12,7 @@ addons:
     - libqt4-opengl-dev 
     - libgl1-mesa-dev 
     - libfftw3-dev 
-    - libtiff5-dev
+    - libtiff5
 
 
 before_install: 
