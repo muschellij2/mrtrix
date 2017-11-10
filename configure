@@ -29,6 +29,7 @@ if [[ -d .git ]]; then
 fi
 ./configure
 ./build
+rm -f docs/Makefile
 rm -rf tmp/
 rm -rf .git/
 
