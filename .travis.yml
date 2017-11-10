@@ -20,6 +20,7 @@ before_install:
       brew install eigen qt5 pkg-config ;
       export PATH=`brew --prefix`/opt/qt5/bin:$PATH ;
     fi
+  - R CMD INSTALL .
 
 after_success: 
   - if [ "$TRAVIS_OS_NAME" == "linux" ]; 
