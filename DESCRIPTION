@@ -8,6 +8,9 @@ Authors@R: structure(list(structure(list(given = "John", family = "Muschelli",
         comment = NULL), .Names = c("given", "family", "role", "email", 
     "comment"))), class = "person")
 License: GPL-3
+SystemRequirements: C++11, eigen (>= 3.2), 
+    qt (>= 5.1), zlib, Python (>= 2.7), 
+    libtiff (>= 4.0), fftw (>= 3)
 Suggests: 
     knitr,
     rmarkdown,
@@ -22,3 +25,5 @@ VignetteBuilder: knitr
 URL: https://github.com/muschellij2/mrtrix
 BugReports: https://github.com/muschellij2/mrtrix/issues
 RoxygenNote: 6.0.1.9000
+
+
