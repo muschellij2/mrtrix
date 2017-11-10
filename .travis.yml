@@ -3,6 +3,7 @@ sudo: no
 cache: packages
 warnings_are_errors: yes
 r_check_args: --as-cran --install-args=--build
+dist: precise 
 
 addons:
   apt:
