@@ -1,7 +1,8 @@
 Package: mrtrix
 Version: 0.1.0
 Title: Port of MRTrix software
-Description: Provides functionality of the MRTrix3 <http://www.mrtrix.org/> software for MRI analysis
+Description: Provides functionality of the MRTrix3 
+    <http://www.mrtrix.org/> software for MRI analysis.
 Authors@R: structure(list(structure(list(given = "John", family = "Muschelli", 
         role = c("aut", "cre"), email = "muschellij2@gmail.com", 
         comment = NULL), .Names = c("given", "family", "role", "email", 
