@@ -1,0 +1,35 @@
+#!/bin/bash
+CXX_STD=CXX11
+
+gitcmd=`Rscript -e "x=Sys.which('git'); cat(x)"`
+if [[ ! -x $gitcmd ]] ; then # try install git
+  apt-get install -y git-core
+fi
+gitcmd=`Rscript -e "x=Sys.which('git'); cat(x)"`
+if [[ ! -x $gitcmd ]] ; then # try install git
+  exit 1
+fi
+
+brewcmd=`Rscript -e "x=Sys.which('brew'); cat(x)"`
+if [[ -x $gitcmd ]] ; then # try install git
+	export PATH=`${brewcmd} --prefix`/opt/qt5/bin:$PATH
+fi
+cd ./src
+
+# get / set up ANTs code
+gitlink=https://github.com/MRtrix3/mrtrix3.git
+tag=bb77205ec70788f1d121e3e02af1cb658fa30cb2 # pixeltype in resampleImage, including double
+git clone $gitlink 
+
+cd mrtrix3
+if [[ -d .git ]]; then
+    git checkout master
+    git pull
+    git checkout $tag
+fi
+./configure
+./build
+rm -rf tmp/
+rm -rf .git/
+
+cd ../../
