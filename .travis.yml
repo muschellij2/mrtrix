@@ -4,6 +4,16 @@ warnings_are_errors: yes
 r_check_args: --as-cran --install-args=--build
 sudo: required 
 dist: trusty 
+warnings_are_errors: true
+use_bioc: true
+bioc_required: true
+cran: http://cran.rstudio.com
+dist: precise
+
+os:
+  - linux
+  - osx
+osx_image: xcode9 
 
 addons:
   apt:
@@ -14,6 +24,15 @@ addons:
     - libfftw3-dev 
     - libtiff5
 
+env:
+  global:
+  - R_BUILD_ARGS="--no-manual"
+  - R_CHECK_ARGS="--as-cran --install-args=--build"
+  - RGL_USE_NULL=TRUE
+  - WARNINGS_ARE_ERRORS=1 
+  - PROJECT_NAME=neuroconductor
+  - DISPLAY=:99.0
+
 
 before_install: 
   - if [[ "${TRAVIS_OS_NAME}" = "osx" ]];
@@ -21,14 +40,41 @@ before_install:
       brew install eigen qt5 pkg-config ;
       export PATH=`brew --prefix`/opt/qt5/bin:$PATH ;
     fi
-  - R CMD INSTALL .
+  - echo "travis_wait*\.log$" >> .Rbuildignore
+  - fname=travis_helpers.sh
+  - wget -O ${fname} http://bit.ly/travis_helpers
+  - cat ${fname}; source ${fname}; rm ${fname}  
+  - cat DESCRIPTION    
 
-after_success: 
+script:
+  # - source ~/.R/Makevars
+  - travis_wait 100 R CMD build ${R_BUILD_ARGS} . 
+  - rm -f travis_wait*.log
+  - PKG_TARBALL=$(ls -1t *.tar.gz | head -n 1)
+  - travis_wait 100 R CMD check ${R_CHECK_ARGS} "${PKG_TARBALL}"; CHECK_RET=$? ;
+  - rm -f travis_wait*.log
+  - if [[ $CHECK_RET -ne 0 ]];
+    then
+      echo "R CMD check failed"; 
+      check_fail; 
+      exit 1; 
+    fi  
+  - check_warnings
+
+
+after_success:
+  - cat ${PACKAGE_NAME}.Rcheck/00install.out
+  - cat ${PACKAGE_NAME}.Rcheck/00check.log
   - if [ "$TRAVIS_OS_NAME" == "linux" ]; 
     then 
-    Rscript -e 'covr::coveralls(type = "all")'; 
+      Rscript -e 'covr::coveralls(type = "all")'; 
     fi
 
+after_failure:
+  - cat ${PACKAGE_NAME}.Rcheck/00install.out
+  - cat ${PACKAGE_NAME}.Rcheck/00check.log
+
+# so no overwrite of linux build
 before_deploy: 
   - if [ "$TRAVIS_OS_NAME" == "osx" ]; 
     then 
