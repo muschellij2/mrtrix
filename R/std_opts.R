@@ -29,7 +29,7 @@ std_opts = function(
   tempdir = tempfile(),
   use_tempdir = TRUE,
   quiet = FALSE) {
-  opts =
+
   if (verbose) {
     opts = c(opts, "-info")
     if (verbose > 1) {

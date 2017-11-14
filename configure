@@ -4,10 +4,10 @@ CXX_STD=CXX11
 gitcmd=`Rscript -e "x=Sys.which('git'); cat(x)"`
 if [[ ! -x $gitcmd ]] ; then # try install git
 	os=`Rscript -e "cat(tolower(Sys.info()[['sysname']]))"`
-  	if [[ "$os" == "darwin" ]]; 
-  	then 
+  	if [[ "$os" == "darwin" ]];
+  	then
   	  brew install -y git ;
-  	else 
+  	else
   		apt-get install -y git-core;
   	fi
 fi
@@ -23,23 +23,34 @@ fi
 cd ./src
 
 gitlink=https://github.com/MRtrix3/mrtrix3.git
-tag=bb77205ec70788f1d121e3e02af1cb658fa30cb2 
+tag=bb77205ec70788f1d121e3e02af1cb658fa30cb2
 # get / set up ANTs code
-if [[ -d mrtrix3 ]]; 
+if [[ -d mrtrix3 ]];
   then
   cd mrtrix3 ;
-else 
+else
   git clone $gitlink ;
   cd mrtrix3 ;
-  git checkout $tag  
+  git checkout $tag
 fi
 
 if [[ -e bin/dwi2fod ]];
-then 
+then
 	echo "Not rebuilding";
-else 
-	./configure ;
-	./build ;
+else
+	./configure; CHECK_RET=$? ;
+	 if [[ $CHECK_RET -ne 0 ]];
+	 then
+	  cat configure.log
+	  exit 1
+	 fi
+
+	./build ; CHECK_RET=$? ;
+	 if [[ $CHECK_RET -ne 0 ]];
+	 then
+	  cat configure.log
+	  exit 1
+	 fi
 	rm -rf .git/
 fi
 rm -f docs/Makefile
