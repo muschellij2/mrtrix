@@ -2,12 +2,15 @@
 % Please edit documentation in R/dwi2fod.R
 \name{dwi2fod}
 \alias{dwi2fod}
+\alias{dwi2fod_with_response}
 \title{Estimate fibre orientation distributions
 from diffusion data using spherical deconvolution}
 \usage{
 dwi2fod(infile, response, algorithm = c("csd", "msmt_csd"), bvals = NULL,
   bvecs = NULL, scheme = NULL, mask = NULL, lmax = NULL,
   shells = NULL, outfile = NULL, opts = "", verbose = TRUE, ...)
+
+dwi2fod_with_response(infile, ...)
 }
 \arguments{
 \item{infile}{the input DWI image containing volumes
@@ -58,5 +61,8 @@ response = dwi2response(infile, bvals = bvals, bvecs = bvecs)
 fod = dwi2fod(infile, response = response,
 bvals = bvals, bvecs = bvecs,
 algorithm = "csd")
+fod_make_resp = dwi2fod_with_response(infile = infile,
+bvals = bvals, bvecs = bvecs)
+
 }
 }

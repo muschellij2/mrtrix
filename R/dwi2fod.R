@@ -33,6 +33,9 @@
 #' fod = dwi2fod(infile, response = response,
 #' bvals = bvals, bvecs = bvecs,
 #' algorithm = "csd")
+#' fod_make_resp = dwi2fod_with_response(infile = infile,
+#' bvals = bvals, bvecs = bvecs)
+#'
 #' }
 dwi2fod = function(
   infile,
@@ -98,4 +101,29 @@ dwi2fod = function(
     warning("Result not zero, may be a problem!")
   }
   return(outfile)
+}
+
+
+#' @export
+#' @rdname dwi2fod
+#' @importFrom methods formalArgs
+dwi2fod_with_response = function(
+  infile,
+  ...
+) {
+
+  args = list(...)
+  args$infile = infile
+
+  nargs = names(args)
+  response_args = formalArgs(dwi2response)
+  response_args = args[ nargs %in% response_args ]
+  response = do.call(dwi2response, args = response_args)
+
+  args$response = response
+  nargs = names(args)
+  fod_args = formalArgs(dwi2fod)
+  fod_args = args[ nargs %in% fod_args ]
+  ret = do.call(dwi2fod, args = response_args)
+  return(ret)
 }
