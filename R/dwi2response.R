@@ -18,6 +18,7 @@
 #' @param outfile Output response file
 #' @param opts Additional options to pass
 #' @param verbose Print diagnostic output
+#' @param ... arguments to pass to \code{\link{std_opts}}
 #'
 #' @return Output filename
 #' @export
@@ -42,7 +43,8 @@ dwi2response = function(
   shells = NULL,
   outfile = tempfile(),
   opts = "",
-  verbose = TRUE
+  verbose = TRUE,
+  ...
 ) {
 
   cmd = "dwi2response"
