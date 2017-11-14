@@ -1,5 +1,5 @@
 Package: mrtrix
-Version: 0.1.0
+Version: 0.2.0
 Title: Port of MRTrix software
 Description: Provides functionality of the MRTrix3 
     <http://www.mrtrix.org/> software for MRI analysis.
@@ -11,6 +11,8 @@ License: GPL-3
 SystemRequirements: C++11, eigen (>= 3.2), 
     qt (>= 5.1), zlib, Python (>= 2.7), 
     libtiff (>= 4.0), fftw (>= 3)
+Imports:
+    neurobase
 Suggests: 
     knitr,
     rmarkdown,
