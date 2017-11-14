@@ -6,3 +6,4 @@
 ^\.travis\.yml$
 cleanup
 cleanup_src
+src/mrtrix3/*

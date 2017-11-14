@@ -8,6 +8,8 @@
 #' @param force force overwrite of output files if pre-existing
 #' @param cleanup delete temporary files during script, or
 #' temporary directory atscript completion
+#' @param use_tempdir logical indicating if this function uses a
+#' \code{tempdir} argument
 #' @param tempdir Manually specify the path in which to
 #' generate the temporary directory
 #' @param quiet Suppress all console output during script execution

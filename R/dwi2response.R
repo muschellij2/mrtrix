@@ -39,7 +39,6 @@ dwi2response = function(
   scheme = NULL,
   mask = NULL,
   lmax = NULL,
-
   shells = NULL,
   outfile = tempfile(),
   opts = "",
@@ -73,8 +72,6 @@ dwi2response = function(
     shells = paste(shells, collapse = ",")
     opts = c(opts, paste0("-shell ", shells))
   }
-
-  opts = c(opts, paste0("-nthreads ", nthreads))
 
   opts = std_opts(opts = opts,
                   verbose = verbose,

@@ -26,6 +26,9 @@ temporary directory atscript completion}
 \item{tempdir}{Manually specify the path in which to
 generate the temporary directory}
 
+\item{use_tempdir}{logical indicating if this function uses a
+\code{tempdir} argument}
+
 \item{quiet}{Suppress all console output during script execution}
 }
 \value{

@@ -20,6 +20,8 @@ instead of bvals/bvecs}
 
 \item{outfile}{output mask file name}
 
+\item{clean_scale}{amount of cleaning of the mask is done}
+
 \item{opts}{Additional options to pass}
 
 \item{verbose}{Print diagnostic output}

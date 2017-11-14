@@ -9,6 +9,7 @@
 #' @param outfile output mask file name
 #' @param opts Additional options to pass
 #' @param verbose Print diagnostic output
+#' @param clean_scale amount of cleaning of the mask is done
 #'
 #' @return Name of output file
 #' @export
