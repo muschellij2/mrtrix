@@ -4,3 +4,5 @@
 ^README\.Rmd$
 ^appveyor\.yml$
 ^\.travis\.yml$
+cleanup
+cleanup_src

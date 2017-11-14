@@ -7,7 +7,7 @@ from diffusion data using spherical deconvolution}
 \usage{
 dwi2fod(infile, response, algorithm = c("csd", "msmt_csd"), bvals = NULL,
   bvecs = NULL, scheme = NULL, mask = NULL, lmax = NULL,
-  shells = NULL, outfile = NULL, opts = "", verbose = TRUE)
+  shells = NULL, outfile = NULL, opts = "", verbose = TRUE, ...)
 }
 \arguments{
 \item{infile}{the input DWI image containing volumes
@@ -37,6 +37,8 @@ comma-separated values for multi-shell response)}
 \item{opts}{Additional options to pass}
 
 \item{verbose}{Print diagnostic output}
+
+\item{...}{arguments to pass to \code{\link{std_opts}}}
 }
 \value{
 Output filename

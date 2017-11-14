@@ -7,7 +7,7 @@
 dwi2response(infile, algorithm = c("tournier", "dhollander", "msmt_5tt", "fa",
   "tax", "manual"), bvals = NULL, bvecs = NULL, scheme = NULL,
   mask = NULL, lmax = NULL, shells = NULL, outfile = tempfile(),
-  opts = "", verbose = TRUE)
+  opts = "", verbose = TRUE, ...)
 }
 \arguments{
 \item{infile}{the input DWI image containing volumes
@@ -38,6 +38,8 @@ comma-separated values for multi-shell response)}
 \item{opts}{Additional options to pass}
 
 \item{verbose}{Print diagnostic output}
+
+\item{...}{arguments to pass to \code{\link{std_opts}}}
 }
 \value{
 Output filename

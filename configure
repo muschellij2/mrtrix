@@ -3,7 +3,13 @@ CXX_STD=CXX11
 
 gitcmd=`Rscript -e "x=Sys.which('git'); cat(x)"`
 if [[ ! -x $gitcmd ]] ; then # try install git
-  apt-get install -y git-core
+	os=`Rscript -e "cat(tolower(Sys.info()[['sysname']]))"`
+  	if [[ "$os" == "darwin" ]]; 
+  	then 
+  	  brew install -y git ;
+  	else 
+  		apt-get install -y git-core;
+  	fi
 fi
 gitcmd=`Rscript -e "x=Sys.which('git'); cat(x)"`
 if [[ ! -x $gitcmd ]] ; then # try install git
@@ -11,26 +17,32 @@ if [[ ! -x $gitcmd ]] ; then # try install git
 fi
 
 brewcmd=`Rscript -e "x=Sys.which('brew'); cat(x)"`
-if [[ -x $gitcmd ]] ; then # try install git
+if [[ -x $brewcmd ]] ; then # try install git
 	export PATH=`${brewcmd} --prefix`/opt/qt5/bin:$PATH
 fi
 cd ./src
 
-# get / set up ANTs code
 gitlink=https://github.com/MRtrix3/mrtrix3.git
-tag=bb77205ec70788f1d121e3e02af1cb658fa30cb2 # pixeltype in resampleImage, including double
-git clone $gitlink 
-
-cd mrtrix3
-if [[ -d .git ]]; then
-    git checkout master
-    git pull
-    git checkout $tag
+tag=bb77205ec70788f1d121e3e02af1cb658fa30cb2 
+# get / set up ANTs code
+if [[ -d mrtrix3 ]]; 
+  then
+  cd mrtrix3 ;
+else 
+  git clone $gitlink ;
+  cd mrtrix3 ;
+  git checkout $tag  
 fi
-./configure
-./build
+
+if [[ -e bin/dwi2fod ]];
+then 
+	echo "Not rebuilding";
+else 
+	./configure ;
+	./build ;
+	rm -rf .git/
+fi
 rm -f docs/Makefile
 rm -rf tmp/
-rm -rf .git/
 
 cd ../../
