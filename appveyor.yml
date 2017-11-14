@@ -4,7 +4,9 @@ init:
     Invoke-WebRequest http://raw.github.com/krlmlr/r-appveyor/master/scripts/appveyor-tool.ps1 -OutFile "..\appveyor-tool.ps1"
     Import-Module '..\appveyor-tool.ps1'
 install:
-  ps: Bootstrap
+  - ps: Bootstrap
+  - pacman -S git python pkg-config mingw-w64-x86_64-gcc mingw-w64-x86_64-eigen3 mingw-w64-x86_64-qt5 mingw-w64-x86_64-fftw mingw-w64-x86_64-libtiff
+
 cache: C:\RLibrary
 build_script: travis-tool.sh install_deps
 test_script: travis-tool.sh run_tests
