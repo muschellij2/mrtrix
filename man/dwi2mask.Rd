@@ -2,10 +2,13 @@
 % Please edit documentation in R/dwi2mask.R
 \name{dwi2mask}
 \alias{dwi2mask}
+\alias{scheme_or_bvals}
 \title{Transform DWI to mask}
 \usage{
 dwi2mask(infile, bvals = NULL, bvecs = NULL, scheme = NULL,
   outfile = NULL, clean_scale = 2, opts = "", verbose = TRUE)
+
+scheme_or_bvals(bvals = NULL, bvecs = NULL, scheme = NULL)
 }
 \arguments{
 \item{infile}{the input DWI image containing volumes

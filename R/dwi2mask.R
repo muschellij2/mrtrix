@@ -69,7 +69,8 @@ dwi2mask = function(
 
 }
 
-
+#' @rdname dwi2mask
+#' @export
 scheme_or_bvals = function(
   bvals = NULL,
   bvecs = NULL,
