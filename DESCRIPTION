@@ -11,7 +11,8 @@ SystemRequirements: C++11, eigen (>= 3.2),
     qt (>= 5.1), zlib, Python (>= 2.7), 
     libtiff (>= 4.0), fftw (>= 3)
 Imports:
-    neurobase
+    neurobase,
+    methods
 Suggests: 
     knitr,
     rmarkdown,
