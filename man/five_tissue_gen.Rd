@@ -5,9 +5,10 @@
 \title{Generat a five-tissue-type (5TT) segmented tissue image suitable
 for use in Anatomically-Constrained Tractography (ACT)}
 \usage{
-five_tissue_gen(infile, algorithm = c("fsl", "freesurfer"), outfile = NULL,
-  crop = TRUE, amyg_hipp_gray = FALSE, mask = NULL, t2 = NULL,
-  premasked = FALSE, lut = NULL, opts = "", verbose = TRUE, ...)
+five_tissue_gen(infile, algorithm = c("fsl", "freesurfer"),
+  outfile = NULL, crop = TRUE, amyg_hipp_gray = FALSE, mask = NULL,
+  t2 = NULL, premasked = FALSE, lut = NULL, opts = "",
+  verbose = TRUE, ...)
 }
 \arguments{
 \item{infile}{The input T1-weighted image}

@@ -1,4 +1,6 @@
-folnames = c("bin", "lib", "core", "src", "docs")
+folnames = c("bin", "lib", "core",
+             # "src",
+             "docs")
 folders = file.path("mrtrix3", folnames)
 # dest <- file.path(R_PACKAGE_DIR, folders)
 

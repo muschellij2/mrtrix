@@ -6,9 +6,10 @@
 \title{Estimate fibre orientation distributions
 from diffusion data using spherical deconvolution}
 \usage{
-dwi2fod(infile, response, algorithm = c("csd", "msmt_csd"), bvals = NULL,
-  bvecs = NULL, scheme = NULL, mask = NULL, lmax = NULL,
-  shells = NULL, outfile = NULL, opts = "", verbose = TRUE, ...)
+dwi2fod(infile, response, algorithm = c("csd", "msmt_csd"),
+  bvals = NULL, bvecs = NULL, scheme = NULL, mask = NULL,
+  lmax = NULL, shells = NULL, outfile = NULL, opts = "",
+  verbose = TRUE, ...)
 
 dwi2fod_with_response(infile, ...)
 }

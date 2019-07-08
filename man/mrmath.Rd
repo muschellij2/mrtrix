@@ -7,13 +7,13 @@ along a specified axis of a single image}
 \usage{
 mrmath(infile, operation = c("mean", "median", "sum", "product", "rms",
   "norm", "var", "std", "min", "max", "absmax", "magmax"),
-  datatype = c("float32", "float32le", "float32be", "float64", "float64le",
-  "float64be", "int64", "uint64", "int64le", "uint64le", "int64be", "uint64be",
-  "int32", "uint32", "int32le", "uint32le", "int32be", "uint32be", "int16",
-  "uint16", "int16le", "uint16le", "int16be", "uint16be", "cfloat32",
-  "cfloat32le", "cfloat32be", "cfloat64", "cfloat64le", "cfloat64be", "int8",
-  "uint8", "bit"), outfile = NULL, axis = NULL, opts = "",
-  verbose = TRUE, ...)
+  datatype = c("float32", "float32le", "float32be", "float64",
+  "float64le", "float64be", "int64", "uint64", "int64le", "uint64le",
+  "int64be", "uint64be", "int32", "uint32", "int32le", "uint32le",
+  "int32be", "uint32be", "int16", "uint16", "int16le", "uint16le",
+  "int16be", "uint16be", "cfloat32", "cfloat32le", "cfloat32be",
+  "cfloat64", "cfloat64le", "cfloat64be", "int8", "uint8", "bit"),
+  outfile = NULL, axis = NULL, opts = "", verbose = TRUE, ...)
 }
 \arguments{
 \item{infile}{input filename or filenames.  Can be list of nifti objects too.}

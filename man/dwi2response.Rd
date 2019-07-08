@@ -4,8 +4,8 @@
 \alias{dwi2response}
 \title{Estimate response function(s) for spherical deconvolution}
 \usage{
-dwi2response(infile, algorithm = c("tournier", "dhollander", "msmt_5tt", "fa",
-  "tax", "manual"), bvals = NULL, bvecs = NULL, scheme = NULL,
+dwi2response(infile, algorithm = c("tournier", "dhollander", "msmt_5tt",
+  "fa", "tax", "manual"), bvals = NULL, bvecs = NULL, scheme = NULL,
   mask = NULL, lmax = NULL, shells = NULL, outfile = tempfile(),
   opts = "", verbose = TRUE, ...)
 }
