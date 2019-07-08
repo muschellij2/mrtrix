@@ -1,8 +1,6 @@
 language: R
 cache: packages
-warnings_are_errors: yes
 r_check_args: --as-cran --install-args=--build
-sudo: required 
 dist: trusty 
 warnings_are_errors: true
 use_bioc: true
