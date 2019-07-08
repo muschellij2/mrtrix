@@ -23,8 +23,8 @@ addons:
 
 env:
   global:
-  - R_BUILD_ARGS="--no-manual"
-  - R_CHECK_ARGS="--as-cran --install-args=--build"
+  - R_BUILD_ARGS=" --no-build-vignettes --no-manual "
+  - R_CHECK_ARGS="--no-manual --as-cran --install-args=--build"
   - RGL_USE_NULL=TRUE
   - WARNINGS_ARE_ERRORS=1 
   - PROJECT_NAME=neuroconductor
@@ -45,31 +45,30 @@ before_install:
 
 script:
   # - source ~/.R/Makevars
-  # - travis_wait 100 R CMD build ${R_BUILD_ARGS} . 
-  # - rm -f travis_wait*.log
-  # - PKG_TARBALL=$(ls -1t *.tar.gz | head -n 1)
-  - travis_wait 100 R CMD check ${R_CHECK_ARGS} .; CHECK_RET=$? ;
+  - travis_wait 100 R CMD build ${R_BUILD_ARGS} . 
+  - rm -f travis_wait*.log
+  - PKG_TARBALL=$(ls -1t *.tar.gz | head -n 1)
+  - ls
+  - travis_wait 100 R CMD check ${R_CHECK_ARGS} "${PKG_TARBALL}"; CHECK_RET=$? ;
   - rm -f travis_wait*.log
   - if [[ $CHECK_RET -ne 0 ]];
     then
-      echo "R CMD check failed"; 
-      check_fail; 
-      exit 1; 
-    fi  
-  - check_warnings
+      echo "R CMD check failed";
+      check_fail;
+      dump_logs;
+      check_warnings ;
+      travis_terminate 1;
+    fi
 
+after_failure:
+  - dump_logs
 
 after_success:
-  - cat ${PACKAGE_NAME}.Rcheck/00install.out
-  - cat ${PACKAGE_NAME}.Rcheck/00check.log
+  - dump_logs
   - if [ "$TRAVIS_OS_NAME" == "linux" ]; 
     then 
       Rscript -e 'covr::coveralls(type = "all")'; 
     fi
-
-after_failure:
-  - cat ${PACKAGE_NAME}.Rcheck/00install.out
-  - cat ${PACKAGE_NAME}.Rcheck/00check.log
 
 # so no overwrite of linux build
 before_deploy: 
