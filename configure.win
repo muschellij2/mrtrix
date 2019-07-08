@@ -1,16 +1,16 @@
 #!/bin/bash
 CXX_STD=CXX11
 
-gitcmd=`Rscript.exe -e "x=Sys.which('git'); cat(x)"`
+gitcmd=`${R_HOME}/bin/Rscript.exe -e "x=Sys.which('git'); cat(x)"`
 if [[ ! -x $gitcmd ]] ; then # try install git
   apt-get install -y git-core
 fi
-gitcmd=`Rscript.exe -e "x=Sys.which('git'); cat(x)"`
+gitcmd=`${R_HOME}/bin/Rscript.exe -e "x=Sys.which('git'); cat(x)"`
 if [[ ! -x $gitcmd ]] ; then # try install git
   exit 1
 fi
 
-brewcmd=`Rscript.exe -e "x=Sys.which('brew'); cat(x)"`
+brewcmd=`${R_HOME}/bin/Rscript.exe -e "x=Sys.which('brew'); cat(x)"`
 if [[ -x $gitcmd ]] ; then # try install git
 	export PATH=`${brewcmd} --prefix`/opt/qt5/bin:$PATH
 fi
